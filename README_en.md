@@ -1,6 +1,6 @@
 English | [Deutsch](README.md)
 
-# ![Package icon](/package/ui/images/icon_24.png) DSM 7 Package Developer Demo - Framework for Synology NAS
+# ![Package icon](/package/ui/images/icon_24.png) DSM 7 Package Developer Demo
 With the "DSM 7 Package Developer Demo" I would like to offer all ambitious as well as future 3rd party developers a possible platform for the package development of Synology's DiskStation Manager 7. This framework is based on the current BASH version implemented in DSM and the text based HTML markup language. Other script and/or programming languages such as CSS, JavaScript, AJAX, jQuery, Python, Perl etc. are possible, but are not used here. Basic queries and routines to ensure safe and smooth operation within the DSM are already implemented and commented accordingly in the scripts. This includes among other things...
 
   - ## System permissions (privileges)
