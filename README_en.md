@@ -3,19 +3,19 @@ English | [Deutsch](README.md)
 # ![Package icon](/package/ui/images/icon_24.png) DSM 7 Package Developer Demo
 With the "DSM 7 Package Developer Demo" I would like to offer all ambitious as well as future 3rd party developers a possible platform for the package development of Synology's DiskStation Manager 7. This framework is based on the current BASH version implemented in DSM and the text based HTML markup language. Other script and/or programming languages such as CSS, JavaScript, AJAX, jQuery, Python, Perl etc. are possible, but are not used here. Basic queries and routines to ensure safe and smooth operation within the DSM are already implemented and commented accordingly in the scripts. This includes among other things...
 
-  - ## System permissions (privileges)
+  - #### System permissions (privileges)
     With the introduction of DSM 7, an application (referred to as an app in the following) will only be granted root privileges if Synology explicitly approves it. In all other cases, an app is forced to lower its privileges to the point where it only has to manage with highly restricted user and group rights. In order to loosen these restrictive privileges a bit, it is possible to add the app to additional groups, such as the administrators group. A corresponding add/remove function has been integrated into the app and can optionally be customized and executed via a small script.
 
-  - ## Application Authorizations (SynoToken)
+  - #### Application Authorizations (SynoToken)
     If "Improve protection against cross-site request forgery attacks" is enabled in the DSM Control Panel, DSM apps must authenticate themselves to the system with an appropriate token (Synology calls it SynoToken). If this is the case, the SynoToken is evaluated within the app and appended to the URL with the QUERY_STRING SynoToken=[token].
 
-  - ## User authorization (authentication)
+  - #### User authorization (authentication)
     Furthermore, it is checked whether a user logged on to the DSM exists, whether this user belongs to the group of administrators and is privileged to use the app.
 
-  - ## GET/POST request engine
+  - #### GET/POST request engine
     Implementation of a GET-/POST-Request Engine to process incoming form data, parameter transfers and page requests. All form data is transferred via the POST method, variables addressed to links via the GET method. For security reasons, all transferred variables are masked internally by an associative array before they are processed further.
 
-  - ## Language settings
+  - #### Language settings
     The GUI is designed for multilingualism and is adapted to the system language of the DSM.
 
 # System requirements
