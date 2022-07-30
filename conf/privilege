@@ -1,0 +1,7 @@
+{
+	"defaults":{
+		"run-as": "package"
+	},
+	"username": "DSM7DemoSPK",
+	"join-groupname": "system"
+}

@@ -1,0 +1,16 @@
+#!/bin/bash
+# Filename: lang_ger - coded in utf-8
+
+#                DSM7DemoSPK
+#
+#        Copyright (C) 2022 by Tommes 
+# Member of the German Synology Community Forum
+#             License GNU GPLv3
+#   https://www.gnu.org/licenses/gpl-3.0.html
+
+
+# Globale Sprachvariablen
+# --------------------------------------------------------------
+	txtAppTitle="SPK Entwicklungsumgebung für DSM 7"
+	txtAlertOnlyAdmin="Der Zugriff auf die Inhalte von ${app_name} ist nur Benutzern aus der Gruppe der Administratoren gestattet."
+
