@@ -21,8 +21,8 @@ Mit der „DSM 7 Paketentwickler Demo“ möchte ich allen ambitionierten als au
 # Systemvoraussetzungen
 **„DSM 7 Paketentwickler Demo“** wurde speziell für die Verwendung auf **Synology NAS Systemen** entwickelt die das Betriebsystem **DiskStation Mangager 7** verwenden.
 
-# Umbauen des Paketes für die eigene Verwendung  
-Für die nachfolgende Anleitung wird ein entsprechendes **Linux** System vorausgesetzt. Ebenfalls sollte einem der Umgang mit dem Linux **Terminal** vertraut sein. 
+## Umbauen des Paketes für die eigene Verwendung  
+Für die nachfolgende Anleitung wird ein entsprechendes **Linux** System vorausgesetzt. Ebenfalls sollte einem der Umgang mit dem Linux **Terminal** vertraut sein.
 
   - Klone das Repository oder lade dir die entsprechende ZIP-Datei herunter und entpacke das Archiv in einen Ordner deiner Wahl.
 
@@ -45,7 +45,7 @@ Für die nachfolgende Anleitung wird ein entsprechendes **Linux** System vorausg
 
   - Nach der Ausführung wurde ggf. der Name des Repositorys Ordners verändert. Ist dies der Fall, wechselt das Script automatisch in den neu erstellten Ordner.
 
-# Packen des Paketes unter Verwendung eines selbst geschriebenen Scriptes
+## Packen des Paketes unter Verwendung eines selbst geschriebenen Scriptes
   - Wechsle wieder in den Ordner des geklonten, entpackten bzw. umgebauten Repositorys.
 
   - Mach das Script SPK_Pack_Stage.sh ausführbar.
@@ -73,8 +73,8 @@ Für die nachfolgende Anleitung wird ein entsprechendes **Linux** System vorausg
 
     `/var/packages/[Package Name]/target`
  
-# Packen des Paketes unter Verwendung des Synology DSM 7.0 Developer Guides
-Das Repository kann auch mittels toolkit/toolchain wie im Synology DSM 7.0 Developer Guide beschrieben, packen. Sämtliche Informationen sind dem Guide entsprechend zu entnehmen. 
+## Packen des Paketes unter Verwendung des Synology DSM 7.0 Developer Guides
+Das Repository kann auch mittels toolkit/toolchain wie im [Synology DSM 7.0 Developer Guide](https://help.synology.com/developer-guide/) beschrieben, packen. Sämtliche Informationen sind dem Guide entsprechend zu entnehmen. 
 
 
 # App-Berechtigung erweitern bzw. beschränken
