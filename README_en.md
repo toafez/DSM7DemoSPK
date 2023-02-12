@@ -78,7 +78,7 @@ For the following instructions an appropriate **Linux** system is required. You 
        `/var/packages/[Package Name]/target/ui`
 
 ## Packing the package using the Synology DSM 7.0 Developer Guide.
-The repository can also be packed using toolkit/toolchain as described in the Synology DSM 7.0 Developer Guide. All information can be found in the guide accordingly. 
+The repository can also be packaged using toolkit/toolchain as described in the [Synology DSM 7.0 Developer Guide](https://help.synology.com/developer-guide/). All information can be found in the guide accordingly. 
 
 # Extending or restricting app permission
 Under DSM 7, a 3rd_Party application such as „DSM 7 Package Developer Demo“ (referred to as App in the following) is provided with highly restricted user and group rights. Among other things, this means that system-related commands cannot be executed. For the smooth operation of „DSM 7 Package Developer Demo“, however, extended system rights are required, e.g. to be able to access the folder structure of the "shared folders". To extend the app permissions, „DSM 7 Package Developer Demo“ must be added to the administrators' group, but this can only be done by the user himself. The following instructions describe this process.
