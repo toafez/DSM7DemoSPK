@@ -35,8 +35,11 @@ Für die nachfolgende Anleitung wird ein entsprechendes **Linux** System vorausg
   - Falls gewünscht, kannst du den Namen des Paketes, den Namen des Maintrainers, den Copyright Hinweis sowie die Ordner- und Dateirechte ändern, indem du das Script SPK_Build_Stage.sh mit einem Editor deiner Wahl aufrufst und die nachfolgenden Variabeln entsprechend anpasst. 
 
     `packagename="DSM7DemoSPK"`
+    
     `copyright="Copyright (C) 2023 by"`
+    
     `maintrainer="Tommes"`
+    
     `changedirname="no"` 
 
   - Führe nun das Script SPK-Build_Stage.sh aus.
@@ -55,6 +58,7 @@ Für die nachfolgende Anleitung wird ein entsprechendes **Linux** System vorausg
   - Falls gewünscht, kannst du den Namen des Paketes sowie die Versionsnummer ändern, indem du das Script SPK_Pack_Stage.sh mit einem Editor deiner Wahl aufrufst und die nachfolgenden Variabeln entsprechend anpasst. 
 
     `package_name="DSM7DemoSPK"`
+    
     `version="0.1-000"`
 
   - Führe nun das Script SPK-Pack_Stage.sh aus.
