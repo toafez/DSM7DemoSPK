@@ -1,5 +1,5 @@
 {
     "usr-local-linker": {
-        "bin": ["bin/DSM7DemoSPK-cli"]
+        "bin": ["usr/local/bin/DSM7DemoSPK"]
     }
 }

@@ -1,9 +1,9 @@
 #!/bin/bash
 # Filename: parse_language.sh - coded in utf-8
 
-#                SPKdevDSM7
+#                DSM7DemoSPK
 #
-#        Copyright (C) 2022 by Tommes 
+#        Copyright (C) 2023 by Tommes 
 # Member of the German Synology Community Forum
 #             License GNU GPLv3
 #   https://www.gnu.org/licenses/gpl-3.0.html

@@ -3,7 +3,7 @@
 
 #                DSM7DemoSPK
 #
-#        Copyright (C) 2022 by Tommes 
+#        Copyright (C) 2023 by Tommes 
 # Member of the German Synology Community Forum
 #             License GNU GPLv3
 #   https://www.gnu.org/licenses/gpl-3.0.html
@@ -14,7 +14,6 @@
 	PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/syno/bin:/usr/syno/sbin
 
 	app_name="DSM7DemoSPK"
-	display_name="SPK Development for DSM 7"
 	app_home=$(echo /volume*/@appstore/${app_name}/ui)
 	app_link=$(echo /webman/3rdparty/${app_name})
 	[ ! -d "${app_home}" ] && exit
@@ -26,7 +25,10 @@
 # Evaluate app authentication
 # --------------------------------------------------------------
 	# To evaluate the SynoToken, change REQUEST_METHOD to GET
-	[[ "${REQUEST_METHOD}" == "POST" ]] && REQUEST_METHOD="GET" && OLD_REQUEST_METHOD="POST"
+	if [[ "${REQUEST_METHOD}" == "POST" ]]; then
+        REQUEST_METHOD="GET"
+        OLD_REQUEST_METHOD="POST"
+    fi
 
 
 		# Read out and check the login authorization  ( login.cgi )
@@ -38,14 +40,19 @@
 			syno_token=$(echo "${syno_login}" | grep SynoToken | cut -d ":" -f2 | cut -d '"' -f2)
 		fi
 		if [ -n "${syno_token}" ]; then
-			[ -z ${QUERY_STRING} ] && QUERY_STRING="SynoToken=${syno_token}" || QUERY_STRING="${QUERY_STRING}&SynoToken=${syno_token}"
+			if [ -z ${QUERY_STRING} ]; then
+                QUERY_STRING="SynoToken=${syno_token}"
+            else
+                QUERY_STRING="${QUERY_STRING}&SynoToken=${syno_token}"
+            fi
 		fi
 
 		# Login permission ( result=success )
 		if echo ${syno_login} | grep -q result ; then
 			login_result=$(echo "${syno_login}" | grep result | cut -d ":" -f2 | cut -d '"' -f2)
 		fi
-		[[ ${login_result} != "success" ]] && { echo 'Access denied'; exit; }
+		
+        [[ ${login_result} != "success" ]] && { echo 'Access denied'; exit; }
 
 		# Login successful ( success=true )
 		if echo ${syno_login} | grep -q success ; then
@@ -55,7 +62,10 @@
 
 
 	# Set REQUEST_METHOD back to POST again
-	[[ "${OLD_REQUEST_METHOD}" == "POST" ]] && REQUEST_METHOD="POST" && unset OLD_REQUEST_METHOD
+	if [[ "${OLD_REQUEST_METHOD}" == "POST" ]]; then
+        REQUEST_METHOD="POST"
+        unset OLD_REQUEST_METHOD
+    fi
 
 
 	# Reading user/group from authenticate.cgi
@@ -71,26 +81,6 @@
 			is_admin="yes"
 		else
 			is_admin="no"
-		fi
-
-
-	# Evaluate app level authentication
-	# ----------------------------------------------------------
-		# To evaluate the authentication, the file /usr/syno/bin/synowebapi 
-		# must be copied to ${app_home}/modules/synowebapi, and the ownership 
-		# must be adjusted to ${app_name}:${app_name}
-
-		if [ -f "${app_home}/modules/synowebapi" ]; then
-			rar_data=$($app_home/modules/synowebapi --exec api=SYNO.Core.Desktop.Initdata method=get version=1 runner="$syno_user" | jq '.data.AppPrivilege')
-			syno_privilege=$(echo "${rar_data}" | grep "SYNO.SDS._ThirdParty.App.${app_name}" | cut -d ":" -f2 | cut -d '"' -f2)
-			if echo "${syno_privilege}" | grep -q "true"; then
-				is_authenticated="yes"
-			else
-				is_authenticated="no"
-			fi
-		else
-			is_authenticated="no"
-			txtActivatePrivileg="<strong>To enable app level authentication do...</strong><br /><strong>root@[local-machine]:~#</strong> cp /usr/syno/bin/synowebapi /var/packages/${app_name}/target/ui/modules<br /><strong>root@[local-machine]:~#</strong> chown ${app_name}.${app_name} /var/packages/${app_name}/target/ui/modules/synowebapi"
 		fi
 
 
@@ -191,7 +181,7 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
 	<html lang="en">
 		<head>
 			<meta charset="utf-8" />
-			<title>'${display_name}'</title>
+			<title>'${txtAppTitle}'</title>
 			<link rel="shortcut icon" href="images/icon_32.png" type="image/x-icon" />
 			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		</head>
@@ -209,9 +199,6 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
 				# Load page content
 				# --------------------------------------------------------------
 				if [[ "${is_admin}" == "yes" ]]; then
-
-					# Infotext: Enable application level authentication
-					[ -n "${txtActivatePrivileg}" ] && echo ''${txtActivatePrivileg}''
 
 					# Dynamic page output
 					if [ -f "${get[page]}.sh" ]; then
@@ -241,7 +228,6 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
 						syno_user='${syno_user}'<br />
 						user_exist='${user_exist}'<br />
 						is_admin='${is_admin}'<br />
-						is_authenticated='${is_authenticated}'<br />
 					</span>
 					<br />'
 

@@ -21,28 +21,49 @@ With the "DSM 7 Package Developer Demo" I would like to offer all ambitious as w
 # System requirements
 **„DSM 7 Package Developer Demo“** is specifically designed for use on **Synology NAS systems** that use the **DiskStation Mangager 7** operating system.
 
-# Installation instructions
-  For the following instructions an appropriate **Linux** system is required. You should also be familiar with the Linux **Terminal**. 
-  
-    - Clone the repository or download the corresponding ZIP file and unpack the archive into a folder of your choice.
+# Modify the package for your own use.  
+For the following instructions an appropriate **Linux** system is required. You should also be familiar with the Linux **Terminal**. 
 
-    - Change to the folder of the cloned or unzipped repository.
+  - Clone the repository or download the corresponding ZIP file and unpack the archive into a folder of your choice.
 
-    - Make the script build_spk.sh executable.
+  - Change to the folder of the cloned or unzipped repository.
 
-      `chmod +x build_spk.sh`
+  - Make the script SPK_Build_Stage.sh executable.
 
-    - If desired, you can change the name of the SPK by calling the script build_spk.sh with an editor of your choice and changing the name of the variable new_name. Be careful not to change the name of the original_name variable, as this value is automatically adjusted after the script execution.
+    `chmod +x SPK_Build_Stage.sh`
 
-      `new_name="DSM7DemoSPK"`
+  - If desired, you can change the name of the package, the name of the maintrainer, the copyright notice and the folder and file permissions by running the script SPK_Build_Stage.sh with an editor of your choice and changing the following variables accordingly.
 
-    - Now execute the script build_spk.sh.
+    `packagename="DSM7DemoSPK"`
+    `copyright="Copyright (C) 2023 by"`
+    `maintrainer="Tommes"`
+    `changedirname="no"` 
 
-      `./build_spk.sh`
+  - Now run the script SPK-Build_Stage.sh.
 
-    - After the execution the name of the SPK, as well as the folder and file permissions were adjusted if necessary. Subsequently, a package with the appropriate name was created, which has the file extension .spk. Example DSM7DemoSPK.spk
+    `./SPK_Build_Stage.sh`.
 
-    - Now you can install the package via the DSM package center. To do this, open the **Package Center** in **DiskStation Manager (DSM)**, select the **Manual Installation** button in the upper right corner and follow the **Wizard** to upload and install the new **package** or the corresponding **.spk file**. This process is identical for both an initial installation and for performing an update. 
+  - After execution, the name of the repository folder may have been changed. If this is the case, the script automatically changes to the newly created folder.
+
+# Pack the package using a script you wrote yourself.
+  - Change back to the folder of the cloned, unpacked or rebuilt repository.
+
+  - Make the script SPK_Pack_Stage.sh executable.
+
+    `chmod +x SPK_Pack_Stage.sh`
+
+  - If desired, you can change the name of the package as well as the version number by calling the script SPK_Pack_Stage.sh with an editor of your choice and changing the following variables accordingly. 
+
+    `package_name="DSM7DemoSPK"`
+    version="0.1-000"`
+
+  - Now execute the script SPK-Pack_Stage.sh.
+
+    `./SPK_Pack_Stage.sh`
+
+  - After execution a package with the appropriate name was created, which has the file extension .spk. Example DSM7DemoSPK-0.1-000.spk
+
+  - Now you can install the package via the DSM package center. To do this, open the **Package Center** in **DiskStation Manager (DSM)**, select the **Manual Installation** button in the upper right corner and follow the **Wizard** to upload and install the new **package** or the corresponding **.spk file**. This process is identical for both an initial installation and for performing an update. 
 
   - The location of the package in the system of the DSM is under 
 
@@ -51,6 +72,9 @@ With the "DSM 7 Package Developer Demo" I would like to offer all ambitious as w
       ... or under...
 
        `/var/packages/[Package Name]/target/ui`
+
+# Packing the package using the Synology DSM 7.0 Developer Guide.
+The repository can also be packed using toolkit/toolchain as described in the Synology DSM 7.0 Developer Guide. All information can be found in the guide accordingly. 
 
 # Extending or restricting app permission
 Under DSM 7, a 3rd_Party application such as „DSM 7 Package Developer Demo“ (referred to as App in the following) is provided with highly restricted user and group rights. Among other things, this means that system-related commands cannot be executed. For the smooth operation of „DSM 7 Package Developer Demo“, however, extended system rights are required, e.g. to be able to access the folder structure of the "shared folders". To extend the app permissions, „DSM 7 Package Developer Demo“ must be added to the administrators' group, but this can only be done by the user himself. The following instructions describe this process.

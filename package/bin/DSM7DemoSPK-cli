@@ -1,2 +1,0 @@
-#!/bin/sh
-/var/packages/DSM7DemoSPK/scripts/start-stop-status "$@"

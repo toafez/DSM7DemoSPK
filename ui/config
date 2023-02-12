@@ -1,0 +1,16 @@
+{
+	".url": {
+		"SYNO.SDS.3rdParty.DSM7DemoSPK.Application": {
+			"title": "DSM7DemoSPK",
+			"desc": "DSM 7 Demo SPK",
+			"icon": "images/icon_{0}.png",
+			"type": "legacy",
+			"url": "/webman/3rdparty/DSM7DemoSPK/index.cgi",
+			"allUsers": true,
+			"grantPrivilege": "all",
+			"advanceGrantPrivilege": true,
+			"appWindow": "SYNO.SDS.3rdParty.DSM7DemoSPK.Main",
+			"texts": "texts"
+		}
+	}
+}
