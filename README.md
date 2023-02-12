@@ -1,6 +1,6 @@
 [English](README_en.md) | Deutsch
 
-# ![Package icon](/package/ui/images/icon_24.png) DSM 7 Paket Entwickler Demo
+# ![Package icon](/ui/images/icon_24.png) DSM 7 Paket Entwickler Demo
 Mit der „DSM 7 Paketentwickler Demo“ möchte ich allen ambitionierten als auch zukünftigen 3rd-Party Entwicklern eine mögliche Plattform für die Paketentwicklung des DiskStation Manager 7 von Synology anbieten. Dieses Framework basiert dabei auf der jeweils aktuellen, im DSM implementierten BASH Version sowie der textbasierten Auszeichnungssprache HTML. Weitere Script- und/oder Programmiersprachen wie CSS, JavaScript, AJAX, jQuery, Python, Perl etc. sind möglich, kommen hier jedoch nicht zum Einsatz. Grundlegende Abfragen und Routinen, um einen sicheren und reibungslosen Betrieb innerhalb des DSM zu gewährleisten, sind bereits implementiert und in den Scripten entsprechend kommentiert. Dazu gehört u.a. ...
 
   - #### Systemberechtigungen (Privilegien)
@@ -21,8 +21,8 @@ Mit der „DSM 7 Paketentwickler Demo“ möchte ich allen ambitionierten als au
 # Systemvoraussetzungen
 **„DSM 7 Paketentwickler Demo“** wurde speziell für die Verwendung auf **Synology NAS Systemen** entwickelt die das Betriebsystem **DiskStation Mangager 7** verwenden.
 
-# Umbauen des Paketes für die eigene Verwendung  
-Für die nachfolgende Anleitung wird ein entsprechendes **Linux** System vorausgesetzt. Ebenfalls sollte einem der Umgang mit dem Linux **Terminal** vertraut sein. 
+## Umbauen des Paketes für die eigene Verwendung  
+Für die nachfolgende Anleitung wird ein entsprechendes **Linux** System vorausgesetzt. Ebenfalls sollte einem der Umgang mit dem Linux **Terminal** vertraut sein.
 
   - Klone das Repository oder lade dir die entsprechende ZIP-Datei herunter und entpacke das Archiv in einen Ordner deiner Wahl.
 
@@ -35,8 +35,11 @@ Für die nachfolgende Anleitung wird ein entsprechendes **Linux** System vorausg
   - Falls gewünscht, kannst du den Namen des Paketes, den Namen des Maintrainers, den Copyright Hinweis sowie die Ordner- und Dateirechte ändern, indem du das Script SPK_Build_Stage.sh mit einem Editor deiner Wahl aufrufst und die nachfolgenden Variabeln entsprechend anpasst. 
 
     `packagename="DSM7DemoSPK"`
+    
     `copyright="Copyright (C) 2023 by"`
+    
     `maintrainer="Tommes"`
+    
     `changedirname="no"` 
 
   - Führe nun das Script SPK-Build_Stage.sh aus.
@@ -45,7 +48,7 @@ Für die nachfolgende Anleitung wird ein entsprechendes **Linux** System vorausg
 
   - Nach der Ausführung wurde ggf. der Name des Repositorys Ordners verändert. Ist dies der Fall, wechselt das Script automatisch in den neu erstellten Ordner.
 
-# Packen des Paketes unter Verwendung eines selbst geschriebenen Scriptes
+## Packen des Paketes unter Verwendung eines selbst geschriebenen Scriptes
   - Wechsle wieder in den Ordner des geklonten, entpackten bzw. umgebauten Repositorys.
 
   - Mach das Script SPK_Pack_Stage.sh ausführbar.
@@ -55,6 +58,7 @@ Für die nachfolgende Anleitung wird ein entsprechendes **Linux** System vorausg
   - Falls gewünscht, kannst du den Namen des Paketes sowie die Versionsnummer ändern, indem du das Script SPK_Pack_Stage.sh mit einem Editor deiner Wahl aufrufst und die nachfolgenden Variabeln entsprechend anpasst. 
 
     `package_name="DSM7DemoSPK"`
+    
     `version="0.1-000"`
 
   - Führe nun das Script SPK-Pack_Stage.sh aus.
@@ -73,8 +77,8 @@ Für die nachfolgende Anleitung wird ein entsprechendes **Linux** System vorausg
 
     `/var/packages/[Package Name]/target`
  
-# Packen des Paketes unter Verwendung des Synology DSM 7.0 Developer Guides
-Das Repository kann auch mittels toolkit/toolchain wie im Synology DSM 7.0 Developer Guide beschrieben, packen. Sämtliche Informationen sind dem Guide entsprechend zu entnehmen. 
+## Packen des Paketes unter Verwendung des Synology DSM 7.0 Developer Guides
+Das Repository kann auch mittels toolkit/toolchain wie im [Synology DSM 7.0 Developer Guide](https://help.synology.com/developer-guide/) beschrieben, packen. Sämtliche Informationen sind dem Guide entsprechend zu entnehmen. 
 
 
 # App-Berechtigung erweitern bzw. beschränken

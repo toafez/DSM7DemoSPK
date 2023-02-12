@@ -1,6 +1,6 @@
 English | [Deutsch](README.md)
 
-# ![Package icon](/package/ui/images/icon_24.png) DSM 7 Package Developer Demo
+# ![Package icon](/ui/images/icon_24.png) DSM 7 Package Developer Demo
 With the "DSM 7 Package Developer Demo" I would like to offer all ambitious as well as future 3rd party developers a possible platform for the package development of Synology's DiskStation Manager 7. This framework is based on the current BASH version implemented in DSM and the text based HTML markup language. Other script and/or programming languages such as CSS, JavaScript, AJAX, jQuery, Python, Perl etc. are possible, but are not used here. Basic queries and routines to ensure safe and smooth operation within the DSM are already implemented and commented accordingly in the scripts. This includes among other things...
 
   - #### System permissions (privileges)
@@ -21,7 +21,7 @@ With the "DSM 7 Package Developer Demo" I would like to offer all ambitious as w
 # System requirements
 **„DSM 7 Package Developer Demo“** is specifically designed for use on **Synology NAS systems** that use the **DiskStation Mangager 7** operating system.
 
-# Modify the package for your own use.  
+## Modify the package for your own use.  
 For the following instructions an appropriate **Linux** system is required. You should also be familiar with the Linux **Terminal**. 
 
   - Clone the repository or download the corresponding ZIP file and unpack the archive into a folder of your choice.
@@ -35,8 +35,11 @@ For the following instructions an appropriate **Linux** system is required. You 
   - If desired, you can change the name of the package, the name of the maintrainer, the copyright notice and the folder and file permissions by running the script SPK_Build_Stage.sh with an editor of your choice and changing the following variables accordingly.
 
     `packagename="DSM7DemoSPK"`
+    
     `copyright="Copyright (C) 2023 by"`
+    
     `maintrainer="Tommes"`
+    
     `changedirname="no"` 
 
   - Now run the script SPK-Build_Stage.sh.
@@ -45,7 +48,7 @@ For the following instructions an appropriate **Linux** system is required. You 
 
   - After execution, the name of the repository folder may have been changed. If this is the case, the script automatically changes to the newly created folder.
 
-# Pack the package using a script you wrote yourself.
+## Pack the package using a script you wrote yourself.
   - Change back to the folder of the cloned, unpacked or rebuilt repository.
 
   - Make the script SPK_Pack_Stage.sh executable.
@@ -55,6 +58,7 @@ For the following instructions an appropriate **Linux** system is required. You 
   - If desired, you can change the name of the package as well as the version number by calling the script SPK_Pack_Stage.sh with an editor of your choice and changing the following variables accordingly. 
 
     `package_name="DSM7DemoSPK"`
+    
     version="0.1-000"`
 
   - Now execute the script SPK-Pack_Stage.sh.
@@ -73,8 +77,8 @@ For the following instructions an appropriate **Linux** system is required. You 
 
        `/var/packages/[Package Name]/target/ui`
 
-# Packing the package using the Synology DSM 7.0 Developer Guide.
-The repository can also be packed using toolkit/toolchain as described in the Synology DSM 7.0 Developer Guide. All information can be found in the guide accordingly. 
+## Packing the package using the Synology DSM 7.0 Developer Guide.
+The repository can also be packaged using toolkit/toolchain as described in the [Synology DSM 7.0 Developer Guide](https://help.synology.com/developer-guide/). All information can be found in the guide accordingly. 
 
 # Extending or restricting app permission
 Under DSM 7, a 3rd_Party application such as „DSM 7 Package Developer Demo“ (referred to as App in the following) is provided with highly restricted user and group rights. Among other things, this means that system-related commands cannot be executed. For the smooth operation of „DSM 7 Package Developer Demo“, however, extended system rights are required, e.g. to be able to access the folder structure of the "shared folders". To extend the app permissions, „DSM 7 Package Developer Demo“ must be added to the administrators' group, but this can only be done by the user himself. The following instructions describe this process.
