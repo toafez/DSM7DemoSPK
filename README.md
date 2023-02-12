@@ -1,6 +1,6 @@
 [English](README_en.md) | Deutsch
 
-# ![Package icon](/package/ui/images/icon_24.png) DSM 7 Paket Entwickler Demo
+# ![Package icon](/ui/images/icon_24.png) DSM 7 Paket Entwickler Demo
 Mit der „DSM 7 Paketentwickler Demo“ möchte ich allen ambitionierten als auch zukünftigen 3rd-Party Entwicklern eine mögliche Plattform für die Paketentwicklung des DiskStation Manager 7 von Synology anbieten. Dieses Framework basiert dabei auf der jeweils aktuellen, im DSM implementierten BASH Version sowie der textbasierten Auszeichnungssprache HTML. Weitere Script- und/oder Programmiersprachen wie CSS, JavaScript, AJAX, jQuery, Python, Perl etc. sind möglich, kommen hier jedoch nicht zum Einsatz. Grundlegende Abfragen und Routinen, um einen sicheren und reibungslosen Betrieb innerhalb des DSM zu gewährleisten, sind bereits implementiert und in den Scripten entsprechend kommentiert. Dazu gehört u.a. ...
 
   - #### Systemberechtigungen (Privilegien)
