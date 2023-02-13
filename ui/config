@@ -1,6 +1,6 @@
 {
 	".url": {
-		"SYNO.SDS.3rdParty.DSM7DemoSPK.Application": {
+		"SYNO.SDS._ThirdParty.App.DSM7DemoSPK": {
 			"title": "DSM7DemoSPK",
 			"desc": "DSM 7 Demo SPK",
 			"icon": "images/icon_{0}.png",
@@ -9,7 +9,7 @@
 			"allUsers": true,
 			"grantPrivilege": "all",
 			"advanceGrantPrivilege": true,
-			"appWindow": "SYNO.SDS.3rdParty.DSM7DemoSPK.Main",
+			"appWindow": "SYNO.SDS._ThirdParty.App.DSM7DemoSPK",
 			"texts": "texts"
 		}
 	}
