@@ -6,12 +6,6 @@ Mit der „DSM 7 Paketentwickler Demo“ möchte ich allen ambitionierten als au
   - #### Systemberechtigungen (Privilegien)
     Mit Einführung von DSM 7 erhält eine Anwendung (im folgenden App genannt) nur noch dann root Berechtigungen, wenn Synology dies explizit genehmigt. In allen anderen Fällen ist eine App dazu gezwungen, ihre Privilegien so weit zu senken, das diese nur noch mit stark eingeschränkten Benutzer- und Gruppenrechten auskommen muss. Um diese restriktiven Privilegien ein wenig zu lockern, besteht die Möglichkeit, die App in weitere Gruppen, wie z.B. der Gruppe der Administratoren aufzunehmen. Eine entsprechende Funktion zum hinzufügen bzw. entfernen wurde in die App integriert und kann optional über ein kleines Script angepasst und ausgeführt werden.
 
-  - #### Anwendungsberechtigungen (SynoToken)
-    Ist in der DSM Systemsteuerung der „Schutz gegen Cross-Site Request Forgery Attacken verbessern“ aktiviert, müssen sich DSM Apps am System mit einen entsprechenden Token (Synology nennt ihn SynoToken) authentifizieren. Ist das der Fall, wird der SynoToken innerhalb der App ausgewertet und mit dem QUERY_STRING SynoToken=[token] an die URL angehangen.
-
-  - #### Benutzerberechtigung (Authentifizierung)
-    Des Weiteren wird geprüft, ob ein, am DSM angemeldeter Benutzer existiert, ob dieser der Gruppe der Administratoren angehört und privilegiert ist, die App zu nutzen.
-
   - #### GET-/POST-Request Engine
     Implementierung einer GET-/POST-Request Engine um anfallende Formulardaten, Parameterübergaben und Seitenaufrufe zu verarbeiten, wobei sämtliche Formulardaten über die POST-Methode, an Links angegangene Variablen über die GET-Methode übertragen werden. Aus Gründen der Sicherheit werden alle übertragenen Variablen intern durch ein assoziatives Array maskiert bevor diese weiterverarbeitet werden.
 

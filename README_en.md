@@ -6,12 +6,6 @@ With the "DSM 7 Package Developer Demo" I would like to offer all ambitious as w
   - #### System permissions (privileges)
     With the introduction of DSM 7, an application (referred to as an app in the following) will only be granted root privileges if Synology explicitly approves it. In all other cases, an app is forced to lower its privileges to the point where it only has to manage with highly restricted user and group rights. In order to loosen these restrictive privileges a bit, it is possible to add the app to additional groups, such as the administrators group. A corresponding add/remove function has been integrated into the app and can optionally be customized and executed via a small script.
 
-  - #### Application Authorizations (SynoToken)
-    If "Improve protection against cross-site request forgery attacks" is enabled in the DSM Control Panel, DSM apps must authenticate themselves to the system with an appropriate token (Synology calls it SynoToken). If this is the case, the SynoToken is evaluated within the app and appended to the URL with the QUERY_STRING SynoToken=[token].
-
-  - #### User authorization (authentication)
-    Furthermore, it is checked whether a user logged on to the DSM exists, whether this user belongs to the group of administrators and is privileged to use the app.
-
   - #### GET/POST request engine
     Implementation of a GET-/POST-Request Engine to process incoming form data, parameter transfers and page requests. All form data is transferred via the POST method, variables addressed to links via the GET method. For security reasons, all transferred variables are masked internally by an associative array before they are processed further.
 
