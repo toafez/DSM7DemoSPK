@@ -1,16 +1,27 @@
 {
-	".url": {
-		"SYNO.SDS._ThirdParty.App.DSM7DemoSPK": {
+	"DSM7DemoSPK.js": {
+		"SYNO.SDS.DSM7DemoSPK.Application": {
+			"type": "app",
 			"title": "DSM7DemoSPK",
-			"desc": "DSM 7 Demo SPK",
-			"icon": "images/icon_{0}.png",
-			"type": "legacy",
-			"url": "/webman/3rdparty/DSM7DemoSPK/index.cgi",
+			"appWindow": "SYNO.SDS.DSM7DemoSPK.MainWindow",
+			"desc": "DSM7 Package Developer Demo",
+			"icon": "images\/icon_{0}.png",
+			"allowMultiInstance": false,
+			"allowStandalone": true,
+			"allowSharing": true,
 			"allUsers": true,
 			"grantPrivilege": "all",
 			"advanceGrantPrivilege": true,
-			"appWindow": "SYNO.SDS._ThirdParty.App.DSM7DemoSPK",
-			"texts": "texts"
-		}
+			"texts": "texts",
+			"depend": ["SYNO.SDS.DSM7DemoSPK.MainWindow"]
+		},
+		"SYNO.SDS.DSM7DemoSPK.MainWindow": {
+			"type": "lib",
+			"title": "DSM7DemoSPK",
+			"icon": "images\/icon_{0}.png",	
+			"texts": "texts",
+			"depend": ["SYNO.SDS.DSM7DemoSPK.Utils"]
+		},
+		"SYNO.SDS.DSM7DemoSPK.Utils": []
 	}
 }

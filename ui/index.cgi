@@ -14,80 +14,40 @@
 	PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/syno/bin:/usr/syno/sbin
 
 	app_name="DSM7DemoSPK"
+	app_title="DSM7 Package Developer Demo"
 	app_home=$(echo /volume*/@appstore/${app_name}/ui)
 	app_link=$(echo /webman/3rdparty/${app_name})
 	[ ! -d "${app_home}" ] && exit
 
-	# Resetting access permissions
-	unset syno_login rar_data syno_privilege syno_token syno_user user_exist is_admin is_authenticated
-
 
 # Evaluate app authentication
 # --------------------------------------------------------------
-	# To evaluate the SynoToken, change REQUEST_METHOD to GET
+    # To evaluate the login.cgi, change REQUEST_METHOD to GET
 	if [[ "${REQUEST_METHOD}" == "POST" ]]; then
-        REQUEST_METHOD="GET"
-        OLD_REQUEST_METHOD="POST"
-    fi
+		REQUEST_METHOD="GET"
+		OLD_REQUEST_METHOD="POST"
+	fi
 
+	# Read and check the login authorization ( login.cgi )
+	syno_login=$(/usr/syno/synoman/webman/login.cgi)
 
-		# Read out and check the login authorization  ( login.cgi )
-		# ----------------------------------------------------------
-		syno_login=$(/usr/syno/synoman/webman/login.cgi)
+	# Login permission ( result=success )
+	if echo ${syno_login} | grep -q result ; then
+		login_result=$(echo "${syno_login}" | grep result | cut -d ":" -f2 | cut -d '"' -f2)
+	fi
+	[[ ${login_result} != "success" ]] && { echo 'Access denied'; exit; }
 
-		# SynoToken ( only when protection against Cross-Site Request Forgery Attacks is enabled )
-		if echo ${syno_login} | grep -q SynoToken ; then
-			syno_token=$(echo "${syno_login}" | grep SynoToken | cut -d ":" -f2 | cut -d '"' -f2)
-		fi
-		if [ -n "${syno_token}" ]; then
-			if [ -z ${QUERY_STRING} ]; then
-                QUERY_STRING="SynoToken=${syno_token}"
-            else
-                QUERY_STRING="${QUERY_STRING}&SynoToken=${syno_token}"
-            fi
-		fi
-
-		# Login permission ( result=success )
-		if echo ${syno_login} | grep -q result ; then
-			login_result=$(echo "${syno_login}" | grep result | cut -d ":" -f2 | cut -d '"' -f2)
-		fi
-		
-        [[ ${login_result} != "success" ]] && { echo 'Access denied'; exit; }
-
-		# Login successful ( success=true )
-		if echo ${syno_login} | grep -q success ; then
-			login_success=$(echo "${syno_login}" | grep success | cut -d "," -f3 | grep success | cut -d ":" -f2 | cut -d " " -f2 )
-		fi
-		[[ ${login_success} != "true" ]] && { echo 'Access denied'; exit; }
-
+	# Login successful ( success=true )
+	if echo ${syno_login} | grep -q success ; then
+		login_success=$(echo "${syno_login}" | grep success | cut -d "," -f3 | grep success | cut -d ":" -f2 | cut -d " " -f2 )
+	fi
+	[[ ${login_success} != "true" ]] && { echo 'Access denied'; exit; }
 
 	# Set REQUEST_METHOD back to POST again
 	if [[ "${OLD_REQUEST_METHOD}" == "POST" ]]; then
-        REQUEST_METHOD="POST"
-        unset OLD_REQUEST_METHOD
-    fi
-
-
-	# Reading user/group from authenticate.cgi
-	# ----------------------------------------------------------
-		syno_user=$(/usr/syno/synoman/webman/authenticate.cgi)
-
-		# Check if the user exists
-		user_exist=$(grep -o "^${syno_user}:" /etc/passwd)
-		[ -n "${user_exist}" ] && user_exist="yes" || exit
-
-		# Check whether the local user belongs to the "administrators" group
-		if id -G "${syno_user}" | grep -q 101; then
-			is_admin="yes"
-		else
-			is_admin="no"
-		fi
-
-
-	# Set variables to "readonly" for protection or empty contents
-	# ----------------------------------------------------------
-		unset syno_login rar_data syno_privilege
-		readonly syno_token syno_user user_exist is_admin is_authenticated
+		REQUEST_METHOD="POST"
+		unset OLD_REQUEST_METHOD
+	fi
 
 
 # Set environment variables
@@ -111,7 +71,6 @@
 	if [ -z "${get[page]}" ]; then
 		"${set_keyvalue}" "${get_request}" "get[page]" "main"
 		"${set_keyvalue}" "${get_request}" "get[section]" "start"
-		"${set_keyvalue}" "${get_request}" "get[SynoToken]" "$syno_token"
 	fi
 
 
@@ -149,8 +108,6 @@
 		# Saving GET requests for later processing
 		"${set_keyvalue}" "${get_request}" "$GET_key" "$GET_value"
 	done
-		# Adding the SynoToken to the GET request processing
-		"${set_keyvalue}" "${get_request}" "get[SynoToken]" "$syno_token"
 
 	# Analyze incoming POST requests and process to ${var[key]}="$value" variables
 	declare -A post
@@ -181,7 +138,7 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
 	<html lang="en">
 		<head>
 			<meta charset="utf-8" />
-			<title>'${txtAppTitle}'</title>
+			<title>'${app_title}'</title>
 			<link rel="shortcut icon" href="images/icon_32.png" type="image/x-icon" />
 			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 		</head>
@@ -198,10 +155,11 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
 
 				# Load page content
 				# --------------------------------------------------------------
-				if [[ "${is_admin}" == "yes" ]]; then
 
 					# Dynamic page output
-					if [ -f "${get[page]}.sh" ]; then
+					if [ -f "${post[page]}.sh" ]; then
+						. ./"${post[page]}.sh"
+					elif [ -f "${get[page]}.sh" ]; then
 						. ./"${get[page]}.sh"
 					else
 						echo 'Page '${get[page]}'.sh not found!'
@@ -222,12 +180,8 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
 					echo '
 					<strong>Local Enviroment</strong><br />
 					<span style="font-family: Consolas,monospace; font-size: 0.8em;">
-						syno_token='${syno_token}'<br />
 						login_result='${login_result}'<br />
 						login_success='${login_success}'<br />
-						syno_user='${syno_user}'<br />
-						user_exist='${user_exist}'<br />
-						is_admin='${is_admin}'<br />
 					</span>
 					<br />'
 
@@ -254,10 +208,6 @@ if [ $(synogetkeyvalue /etc.defaults/VERSION majorversion) -ge 7 ]; then
 					<pre>'; (set -o posix ; set | sed '/txt.*/d;'); echo '</pre>
 					<br />'
 
-				else
-					# Infotext: Access allowed only for users from the Administrators group
-					echo '<p>'${txtAlertOnlyAdmin}'</p>'
-				fi
 				echo '
 			</article>
 		</body>
