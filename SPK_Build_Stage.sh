@@ -40,7 +40,9 @@ path=$(pwd)
 # -----------------------------------------------
 if [[ "${old_packagename}" != "${packagename}" ]]; then
     mv ./${old_packagename}.c ./${packagename}.c
+    mv ./ui/${old_packagename}.js ./ui/${packagename}.js
     chmod 777 ./${packagename}.c
+    chmod 777 ./ui/${packagename}.js
     echo 'File names containing the name [ '${old_packagename}' ] were renamed to [ '${packagename}' ]'
 else
     echo 'No file names have been changed'
